@@ -23,7 +23,7 @@ class FlutterChannelEventBus {
   static const String responseKey = "response";
 
   /// 存储注册的回掉
-  Map<String, List<Map<int, FlutterChannelEventBusResponseHandle>>> _responseHandleMap = {};
+  Map<String, List<FlutterChannelEventBusRegister>> _responseHandleMap = {};
 
   /// 私有的初始化方法
   FlutterChannelEventBus._() {
@@ -59,11 +59,7 @@ class FlutterChannelEventBus {
     }
     var registerList = _registerList(name);
     registerList.forEach((element) {
-      FlutterChannelEventBusResponseHandle handle = element.values.first;
-      if (element.values.first == null) {
-        return;
-      }
-      handle(map[dataKey]);
+      element.handle(map[dataKey]);
     });
   }
 
@@ -71,24 +67,28 @@ class FlutterChannelEventBus {
   /// registerHash 注册对象的Hash
   /// name 对应消息的唯一标识符
   /// handle 数据相应回掉
-  void register(int registerHash, String name, FlutterChannelEventBusResponseHandle handle) {
+  void register<T>(T register, String name, FlutterChannelEventBusResponseHandle handle) {
     assert(name != null, "name不能为空");
     assert(!_responseHandleMap.containsKey(name), "$name已经存在注册");
     var registerList = _registerList(name);
-    registerList.add({registerHash: handle});
+    var fitst = registerList.firstWhere((element) => element.hash == register.hashCode, orElse: null);
+    if (fitst != null) {
+      return;
+    }
+    registerList.add(FlutterChannelEventBusRegister(register.hashCode, handle));
     _responseHandleMap[name] = registerList;
   }
 
-  List<Map<int, FlutterChannelEventBusResponseHandle>> _registerList(String name) {
+  List<FlutterChannelEventBusRegister> _registerList(String name) {
     return _responseHandleMap[name] ?? [];
   }
 
   /// 取消注册消息的接收
   /// registerHash 注册对象Hash
   /// name 对应消息的唯一标识符
-  void deregister(int registerHash, String name) {
+  void deregister<T>(T register, String name) {
     var list = _registerList(name);
-    var first = list.firstWhere((element) => element.containsKey(registerHash), orElse: () => null);
+    var first = list.firstWhere((element) => element.hash == register.hashCode, orElse: () => null);
     if (first == null) {
       return;
     }
@@ -102,4 +102,10 @@ class FlutterChannelEventBus {
     Map<String, dynamic> response = {nameKey: name, dataKey: data};
     _channel.invokeMethod(responseKey, json.encode(response));
   }
+}
+
+class FlutterChannelEventBusRegister {
+  final int hash;
+  final FlutterChannelEventBusResponseHandle handle;
+  FlutterChannelEventBusRegister(this.hash, this.handle);
 }
