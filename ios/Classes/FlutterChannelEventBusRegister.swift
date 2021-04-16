@@ -6,9 +6,15 @@
 //
 
 import Foundation
-
-struct FlutterChannelEventBusRegister {
-    let name:String
-    let handle:FlutterChannelEventBus.FlutterChannelEventBusResponsehandle
+/// 消息注册
+public struct FlutterChannelEventBusRegister {
+    /// 注册唯一ID
+    public let registerId:String
+    /// 注册的方法名称
+    public let name:String
+    /// 注册的路由方式
+    public let route:FlutterChannelEventBusRoute
+    /// 注册的回掉
+    public let handle:FlutterChannelEventBus.FlutterChannelEventBusResponsehandle
 }
 

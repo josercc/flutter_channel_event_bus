@@ -17,9 +17,6 @@ class FlutterChannelEventBus {
   /// 默认的单例对象
   static FlutterChannelEventBus defaultEventBus = FlutterChannelEventBus._();
 
-  /// 接收数据的方法名称
-  static const String _responseKey = "response";
-
   /// 存储注册
   List<FlutterChannelEventBusRegister> registers = [];
 
@@ -27,7 +24,7 @@ class FlutterChannelEventBus {
   FlutterChannelEventBus._() {
     _channel.setMethodCallHandler((call) async {
       List<FlutterChannelEventBusRegister> callRegisters = registers.where((element) {
-        String method = "${element.route.name}_${element.methodName}";
+        String method = _callMethodName(element.methodName, element.route);
         return call.method == method;
       }).toList();
       if (callRegisters.length > 0) {
@@ -77,8 +74,17 @@ class FlutterChannelEventBus {
   /// [name] 发送的方法名称
   /// [route] 发送数据的路由方式
   /// [data] 发送的数据 [数据必须是Map或者是List]
+  /// [相应返回的数据]
   Future<dynamic> send(String name, FlutterChannelEventBusRoute route, dynamic data) async {
     assert((name != null && route != null) || data != null);
-    return _channel.invokeMethod(_responseKey, json.encode(data));
+    return _channel.invokeMethod(_callMethodName(name, route), json.encode(data));
+  }
+
+  /// 获取真正传输的方法名称
+  /// [name] 设置的传输方法名称
+  /// [route] 设置的传输路由
+  /// [真正的传输方法名称]
+  String _callMethodName(String name, FlutterChannelEventBusRoute route) {
+    return "${route.name}_$name";
   }
 }
