@@ -11,6 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_channel_json:
+    git:
+      url: "http://pineal.ai:30000/Flutter/flutter_channel_json.git"
+      ref: "master"
 
 dev_dependencies:
   flutter_test:

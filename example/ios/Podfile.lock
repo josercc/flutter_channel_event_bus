@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_channel_event_bus (0.0.1):
+    - Flutter
+  - flutter_channel_json (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_channel_event_bus (from `.symlinks/plugins/flutter_channel_event_bus/ios`)
+  - flutter_channel_json (from `.symlinks/plugins/flutter_channel_json/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_channel_event_bus:
+    :path: ".symlinks/plugins/flutter_channel_event_bus/ios"
+  flutter_channel_json:
+    :path: ".symlinks/plugins/flutter_channel_json/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_channel_event_bus: d204e7873a0d95cd89c2b8159ac6882b235d161e
+  flutter_channel_json: 63d2272e772b1722512e88498bebf30771fce927
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.0

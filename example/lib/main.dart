@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_channel_event_bus/flutter_channel_event_bus.dart';
+// import 'package:flutter_channel_event_bus/flutter_channel_event_bus.dart';
 
 void main() {
   runApp(MyApp());
