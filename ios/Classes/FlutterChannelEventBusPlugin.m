@@ -10,6 +10,6 @@
 
 @implementation FlutterChannelEventBusPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [FlutterChannelEventBus registerWithRegistrar:registrar];
+  [SwiftFlutterChannelEventBus registerWithRegistrar:registrar];
 }
 @end
