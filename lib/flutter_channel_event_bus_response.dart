@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_channel_event_bus/flutter_channel_event_bus_register.dart';
 
 /// 消息通道传递回来的数据相应
@@ -14,5 +16,20 @@ class FlutterChannelEventBusResponse {
   /// [transfer] 自定义转换闭包
   T cover<T>(T Function(dynamic data) transfer) {
     return transfer(data);
+  }
+
+  /// 获取某个值
+  /// [key] 对应值的key
+  T getValue<T>(String key) {
+    if (data is! String) {
+      assert(false, "[data]必须是JSON字符串");
+      return null;
+    }
+    var decode = json.decode(data);
+    if (decode == null || decode is! Map<String, dynamic>) {
+      assert(false, "[data]无法解析为字典");
+      return null;
+    }
+    return decode[key];
   }
 }
