@@ -21,8 +21,9 @@ class FlutterChannelEventBusResponse {
   /// 获取某个值
   /// [key] 对应值的key
   T getValue<T>(String key) {
-    return this.mapData[key]
+    return this.mapData[key];
   }
+
   /// 将传递的通道数据转化为字典
   Map<String, dynamic> get mapData {
     if (data is! String) {
