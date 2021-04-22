@@ -24,7 +24,7 @@ class FlutterChannelEventBusResponse {
     return mapData[key];
   }
 
-  /// 将通道传递的数据转换成字典
+  /// 将传递的通道数据转化为字典
   Map<String, dynamic> get mapData {
     if (data is! String) {
       assert(false, "[data]必须是JSON字符串");
