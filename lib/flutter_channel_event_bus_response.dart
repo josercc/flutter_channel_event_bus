@@ -21,6 +21,10 @@ class FlutterChannelEventBusResponse {
   /// 获取某个值
   /// [key] 对应值的key
   T getValue<T>(String key) {
+    return this.mapData[key]
+  }
+  /// 将传递的通道数据转化为字典
+  Map<String, dynamic> get mapData {
     if (data is! String) {
       assert(false, "[data]必须是JSON字符串");
       return null;
@@ -30,6 +34,6 @@ class FlutterChannelEventBusResponse {
       assert(false, "[data]无法解析为字典");
       return null;
     }
-    return decode[key];
+    return decode;
   }
 }
