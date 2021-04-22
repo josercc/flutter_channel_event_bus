@@ -36,6 +36,7 @@ public extension FlutterChannelEventBus {
     ///   - route: 消息的路由 [默认路由]
     ///   - handle: 数据的回掉
     ///   - return: 消息的唯一ID
+    @discardableResult
     func register(event name:String,
                          route:FlutterChannelEventBusRoute = FlutterChannelEventBusRoute(),
                          handle:@escaping FlutterChannelEventBusResponsehandle) -> String {
