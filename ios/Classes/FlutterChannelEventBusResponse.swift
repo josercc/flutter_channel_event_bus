@@ -17,7 +17,7 @@ public struct FlutterChannelEventBusResponse {
     /// 将数据转换成对应的模型
     /// - Returns: 转换的模型
     public func cover<T:Codable>() -> T? {
-        guard let data = self.data else {
+        guard let jsonText = self.data as? String, let data = jsonText.data(using: .utf8) else {
             return nil
         }
         guard let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed) else {
