@@ -20,6 +20,6 @@ public struct FlutterChannelEventBusResponse {
         guard let jsonText = self.data as? String, let data = jsonText.data(using: .utf8) else {
             return nil
         }
-        return try? JSONDecoder().decode(T.self, from: jsonData)
+        return try? JSONDecoder().decode(T.self, from: data)
     }
 }
