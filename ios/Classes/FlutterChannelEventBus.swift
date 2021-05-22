@@ -64,7 +64,7 @@ public extension FlutterChannelEventBus {
         guard let data = data,
               let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed),
               let jsonText = String(data: jsonData, encoding: .utf8) else {
-            result(nil)
+            methodChannel?.invokeMethod(callMethodName(name: name, route: route), arguments: nil, result: result)
             return
         }
         methodChannel?.invokeMethod(callMethodName(name: name, route: route), arguments: jsonText, result: result)
