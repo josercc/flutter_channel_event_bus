@@ -7,6 +7,7 @@ import 'package:flutter_channel_event_bus/flutter_channel_event_bus_route.dart';
 export 'flutter_channel_event_bus_register.dart';
 export 'flutter_channel_event_bus_response.dart';
 export 'flutter_channel_event_bus_route.dart';
+export 'flutter_channel_event_bus_mixin.dart';
 
 /// 通道数据回掉
 /// - parameter response: 通道消息
