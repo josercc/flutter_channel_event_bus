@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import flutter_channel_json
 
 public protocol FlutterChannelEventBusMixin {
     
@@ -71,6 +72,14 @@ public extension FlutterChannelEventBusMixin {
                                             result: result)
     }
     
+    func send<T: Codable>(eventBus name:String,
+                 data:T? = nil,
+                 result:@escaping FlutterResult) {
+        let channelJson = FlutterChannelJson(success: data)
+        let jsonObject = channelJson.toJson()
+        send(eventBus: name, data: jsonObject, result: result)
+    }
+    
     /// 通过自定义的路由发送一条订阅消息
     /// - Parameters:
     ///   - name: 订阅的名称
@@ -85,6 +94,18 @@ public extension FlutterChannelEventBusMixin {
                                             route: .init(custom: routeName),
                                             data: data,
                                             result: result)
+    }
+    
+    func send<T:Codable>(customEventBus name:String,
+                         routeName:String,
+                         data:T? = nil,
+                         result:@escaping FlutterResult) {
+        let channelJson = FlutterChannelJson(success: data)
+        let jsonObject = channelJson.toJson()
+        send(customEventBus: name,
+             routeName: routeName,
+             data: jsonObject,
+             result: result)
     }
     
     private func append(eventBus id:String) {

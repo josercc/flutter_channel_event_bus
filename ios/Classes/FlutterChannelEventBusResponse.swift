@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import flutter_channel_json
 /// 数据通道回掉参数
 public struct FlutterChannelEventBusResponse {
     /// 自定义转换回掉
@@ -28,4 +29,12 @@ public struct FlutterChannelEventBusResponse {
             return try? JSONDecoder().decode(T.self, from: data)
         }
     }
+    
+    public func cover<T: Codable>() throws -> FlutterChannelJson<T> {
+        guard let data  = data else {
+            throw NSError(domain: "data not exit", code: -1)
+        }
+        return try FlutterChannelJson<T>.init(from: data)
+    }
+
 }

@@ -2,13 +2,13 @@ import 'package:flutter_channel_event_bus/flutter_channel_event_bus.dart';
 
 mixin FlutterChannelEventBusMixin {
   /// 存放已经注册ID数组
-  List<String> _eventBusRegisterIds = [];
+  final List<String> _eventBusRegisterIds = [];
 
   /// 释放注册的通知
   void freeRegisters() {
-    _eventBusRegisterIds.forEach((element) {
+    for (var element in _eventBusRegisterIds) {
       FlutterChannelEventBus.defaultEventBus.deregister(element);
-    });
+    }
   }
 
   /// 注册一个通用的通知

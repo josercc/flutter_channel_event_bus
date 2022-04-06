@@ -2,6 +2,7 @@ name: flutter_channel_event_bus
 description: A new Flutter project.
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: ">=2.16.1 <3.0.0"
@@ -10,7 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_channel_json:
+    path: /Users/king/Documents/flutter_channel_json
+    # git: 
+    #   url: https://github.com/josercc/flutter_channel_json.git
+    #   ref: main
 dev_dependencies:
   flutter_test:
     sdk: flutter

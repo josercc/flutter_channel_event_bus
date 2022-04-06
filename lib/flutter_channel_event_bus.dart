@@ -19,7 +19,7 @@ typedef FlutterChannelEventBusResponseHandle = Future<dynamic> Function(
 class FlutterChannelEventBus {
   /// 私有的通道
   static const MethodChannel _channel =
-      const MethodChannel('flutter_channel_event_bus');
+      MethodChannel('flutter_channel_event_bus');
 
   /// 默认的单例对象
   static FlutterChannelEventBus defaultEventBus = FlutterChannelEventBus._();
@@ -77,7 +77,7 @@ class FlutterChannelEventBus {
       String method = _callMethodName(element.methodName, element.route);
       return callMethod == method;
     }).toList();
-    return callRegisters.length > 0;
+    return callRegisters.isNotEmpty;
   }
 
   /// 注册消息接收
@@ -104,12 +104,12 @@ class FlutterChannelEventBus {
   /// 取消注册消息的接收
   /// [registerId] 注册的唯一ID
   void deregister(String registerId) {
-    var first = registers.firstWhere(
-        (element) => element.registerId == registerId);
-    if (first == null) {
-      return;
+    final index = registers.indexWhere((element) {
+      return element.registerId == registerId;
+    });
+    if (index != -1) {
+      registers.removeAt(index);
     }
-    registers.remove(first);
   }
 
   /// 发送通道数据

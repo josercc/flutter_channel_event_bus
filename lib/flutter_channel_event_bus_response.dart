@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_channel_event_bus/flutter_channel_event_bus_register.dart';
+import 'package:flutter_channel_json/flutter_channel_json.dart';
 
 /// 消息通道传递回来的数据相应
 class FlutterChannelEventBusResponse {
@@ -36,5 +37,9 @@ class FlutterChannelEventBusResponse {
       return {};
     }
     return decode;
+  }
+
+  FlutterChannelJson<T> toChannelJson<T>() {
+    return FlutterChannelJson<T>.dyamic(data);
   }
 }
