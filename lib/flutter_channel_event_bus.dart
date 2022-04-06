@@ -49,7 +49,7 @@ class FlutterChannelEventBus {
       String method = _callMethodName(element.methodName, element.route);
       return callMethod == method;
     }).toList();
-    if (callRegisters.length > 0) {
+    if (callRegisters.isNotEmpty) {
       dynamic response;
       for (var register in callRegisters) {
         var channelResponse = FlutterChannelEventBusResponse(
@@ -90,7 +90,6 @@ class FlutterChannelEventBus {
     FlutterChannelEventBusRoute route,
     FlutterChannelEventBusResponseHandle handle,
   ) {
-    assert(name != null && route != null && handle != null);
     String registerId =
         "flutter_channel_event_bus_${DateTime.now().microsecondsSinceEpoch}";
     registers.add(FlutterChannelEventBusRegister(
@@ -106,8 +105,7 @@ class FlutterChannelEventBus {
   /// [registerId] 注册的唯一ID
   void deregister(String registerId) {
     var first = registers.firstWhere(
-        (element) => element.registerId == registerId,
-        orElse: () => null);
+        (element) => element.registerId == registerId);
     if (first == null) {
       return;
     }
@@ -124,7 +122,6 @@ class FlutterChannelEventBus {
     FlutterChannelEventBusRoute route,
     dynamic data,
   ) async {
-    assert((name != null && route != null) || data != null);
     String methodName = _callMethodName(name, route);
     if (_canMethodCallFlutter(methodName)) {
       return _methodCall(

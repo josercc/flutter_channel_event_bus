@@ -1,6 +1,4 @@
 import 'package:flutter_channel_event_bus/flutter_channel_event_bus.dart';
-import 'package:flutter_channel_event_bus/flutter_channel_event_bus_response.dart';
-import 'package:flutter_channel_event_bus/flutter_channel_event_bus_route.dart';
 
 /// 消息注册信息
 class FlutterChannelEventBusRegister {
@@ -17,5 +15,10 @@ class FlutterChannelEventBusRegister {
   final String methodName;
 
   /// 初始化
-  FlutterChannelEventBusRegister({this.registerId, this.route, this.handle, this.methodName});
+  FlutterChannelEventBusRegister({
+    required this.registerId,
+    required this.route,
+    required this.handle,
+    required this.methodName,
+  });
 }

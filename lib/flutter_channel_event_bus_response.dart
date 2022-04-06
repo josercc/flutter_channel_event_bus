@@ -28,12 +28,12 @@ class FlutterChannelEventBusResponse {
   Map<String, dynamic> get mapData {
     if (data is! String) {
       assert(false, "[data]必须是JSON字符串");
-      return null;
+      return {};
     }
     var decode = json.decode(data);
     if (decode == null || decode is! Map<String, dynamic>) {
       assert(false, "[data]无法解析为字典");
-      return null;
+      return {};
     }
     return decode;
   }

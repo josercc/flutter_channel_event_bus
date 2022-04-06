@@ -1,6 +1,6 @@
 # flutter_channel_event_bus
 
-为了做通道统一管理
+A new Flutter project.
 
 ## Getting Started
 

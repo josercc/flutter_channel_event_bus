@@ -1,4 +1,4 @@
-package com.example.flutter_channel_event_bus_example
+package com.winner.flutter_channel_event_bus_example
 
 import io.flutter.embedding.android.FlutterActivity
 
