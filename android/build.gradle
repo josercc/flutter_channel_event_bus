@@ -43,6 +43,10 @@ android {
     defaultConfig {
         minSdkVersion 16
     }
+
+    dependencies {
+        compileOnly rootProject.findProject(":flutter_channel_json")
+    }
 }
 
 def localProperties = new Properties()

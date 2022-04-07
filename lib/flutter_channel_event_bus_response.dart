@@ -39,7 +39,14 @@ class FlutterChannelEventBusResponse {
     return decode;
   }
 
-  FlutterChannelJson<T> toChannelJson<T>() {
-    return FlutterChannelJson<T>.dyamic(data);
+  FlutterChannelJson<T>? toChannelJson<T>() {
+    if (data is String) {
+      return FlutterChannelJson<T>.fromJsonString(data);
+    } else if (data is Map<String, dynamic>) {
+      return FlutterChannelJson<T>.fromJson(data);
+    } else {
+      assert(false, "[data]无法解析为字典");
+      return null;
+    }
   }
 }
