@@ -12,10 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_channel_json:
-    # path: /Users/king/Documents/flutter_channel_json
-    git: 
-      url: https://github.com/josercc/flutter_channel_json.git
-      ref: main
+    path: ../flutter_channel_json
 dev_dependencies:
   flutter_test:
     sdk: flutter
