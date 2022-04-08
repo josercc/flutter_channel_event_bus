@@ -66,4 +66,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compileOnly files("$flutterRoot/bin/cache/artifacts/engine/android-arm/flutter.jar")
     implementation 'com.google.code.gson:gson:2.9.0'
+    api rootProject.findProject(":flutter_channel_json")
 }

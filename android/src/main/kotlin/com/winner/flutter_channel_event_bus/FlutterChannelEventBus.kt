@@ -1,7 +1,7 @@
 package com.winner.flutter_channel_event_bus
 
+import com.example.flutter_channel_json.FlutterChannelJson
 import android.util.Log
-import com.google.gson.Gson
 import io.flutter.plugin.common.MethodChannel
 
 /**
@@ -60,12 +60,12 @@ class FlutterChannelEventBus private constructor() {
     fun send(
         name: String,
         route: FlutterChannelEventBusRoute,
-        data: Any?,
+        data: FlutterChannelJson<Any>?,
         result: MethodChannel.Result?
     ) {
         var methodName = callMethodName(name, route);
-        val json = Gson().toJson(data)
-        Log.d("TAG", "send: $json")
+        val json = data?.toJsonString()?:""
+        Log.d("TAG", "$name - send: $json")
         methodChannel.invokeMethod(methodName, json, result);
     }
 

@@ -1,5 +1,6 @@
 package com.winner.flutter_channel_event_bus
 
+import com.example.flutter_channel_json.FlutterChannelJson
 import io.flutter.plugin.common.MethodChannel
 
 /**
@@ -55,7 +56,7 @@ class FlutterChannelEventBusManager {
      * @param [data]消息的数据
      * @param [result]接收到的回调
      */
-    fun send(name: String, data: Any?, result: MethodChannel.Result?) {
+    fun send(name: String, data: FlutterChannelJson<Any>?, result: MethodChannel.Result?) {
         val route = FlutterChannelEventBusRoute()
         FlutterChannelEventBus.instance.send(name, route, data, result)
     }
@@ -67,7 +68,7 @@ class FlutterChannelEventBusManager {
      * @param [data]消息的数据
      * @param [result]接收到的回调
      */
-    fun sendCustom(name: String, routeName: String, data: Any?, result: MethodChannel.Result?) {
+    fun sendCustom(name: String, routeName: String, data: FlutterChannelJson<Any>?, result: MethodChannel.Result?) {
         val route = FlutterChannelEventBusRoute(routeName)
         return FlutterChannelEventBus.instance.send(name, route, data, result)
     }
