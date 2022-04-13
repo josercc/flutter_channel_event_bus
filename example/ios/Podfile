@@ -32,7 +32,6 @@ target 'Runner' do
   use_modular_headers!
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
-  pod 'flutter_channel_json', :path => '../../../flutter_channel_json/ios'
 end
 
 post_install do |installer|

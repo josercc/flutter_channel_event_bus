@@ -31,10 +31,10 @@ public struct FlutterChannelEventBusResponse {
     }
     
     public func cover<T: Codable>() throws -> FlutterChannelJson<T> {
-        guard let data  = data else {
+        guard let data  = data as? [String:Any] else {
             throw NSError(domain: "data not exit", code: -1)
         }
-        return try FlutterChannelJson<T>.init(from: data)
+        return FlutterChannelJson<T>.init(from: data)
     }
 
 }
